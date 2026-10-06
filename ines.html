@@ -1,0 +1,1081 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Isabella Inés ❤️</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #050509;
+        }
+
+        body {
+            color: white;
+        }
+
+
+        /* =========================
+           PANTALLA DE INICIO
+        ========================= */
+
+        #inicio {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255, 80, 150, 0.15),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #08070c,
+                    #170b17,
+                    #050509
+                );
+
+            transition:
+                opacity 1.5s ease,
+                visibility 1.5s ease;
+        }
+
+        #inicio.oculto {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .inicio-contenido {
+            width: 90%;
+            max-width: 700px;
+
+            animation: aparecer 2s ease;
+        }
+
+        .pequeno {
+            font-size: 14px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+
+            color: #ffb5d8;
+
+            margin-bottom: 25px;
+
+            opacity: 0.9;
+        }
+
+        .titulo {
+            font-size: clamp(42px, 9vw, 90px);
+            line-height: 1.05;
+
+            color: #ffb6d9;
+
+            text-shadow:
+                0 0 10px rgba(255, 120, 180, 0.5),
+                0 0 30px rgba(255, 120, 180, 0.3);
+
+            animation: brillo 3s infinite alternate;
+        }
+
+        .subtitulo {
+            margin-top: 20px;
+
+            font-size: 18px;
+
+            color: #ddd;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================
+           BOTÓN ENTRAR
+        ========================= */
+
+        .boton-entrar {
+            margin-top: 45px;
+
+            padding: 17px 42px;
+
+            border: 1px solid rgba(255,255,255,.5);
+
+            border-radius: 50px;
+
+            background: rgba(255,255,255,.08);
+
+            color: white;
+
+            font-size: 17px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(10px);
+
+            transition: .4s;
+
+            box-shadow:
+                0 0 20px rgba(255,100,170,.2);
+        }
+
+        .boton-entrar:hover {
+            transform: scale(1.08);
+
+            background: rgba(255,120,180,.2);
+
+            box-shadow:
+                0 0 40px rgba(255,100,180,.5);
+        }
+
+
+        /* =========================
+           CARTA
+        ========================= */
+
+        #carta {
+            position: fixed;
+
+            inset: 0;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition: opacity 1.5s ease;
+
+            overflow: hidden;
+
+            background: #050509;
+        }
+
+        #carta.activa {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        /* =========================
+           GALERÍA
+        ========================= */
+
+        .galeria {
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        .foto {
+            position: absolute;
+
+            width: 300px;
+            height: 430px;
+
+            object-fit: cover;
+
+            border-radius: 25px;
+
+            opacity: .32;
+
+            filter:
+                brightness(.55)
+                saturate(.8)
+                blur(.2px);
+
+            box-shadow:
+                0 0 60px rgba(255,100,170,.18);
+
+            animation:
+                flotar 12s ease-in-out infinite alternate,
+                aparecerFoto 2s ease;
+        }
+
+        .foto:nth-child(1) {
+            transform:
+                translate(-300px, -100px)
+                rotate(-8deg);
+
+            animation-delay: 0s;
+        }
+
+        .foto:nth-child(2) {
+            transform:
+                translate(280px, -130px)
+                rotate(7deg);
+
+            animation-delay: 2s;
+        }
+
+        .foto:nth-child(3) {
+            transform:
+                translate(-270px, 230px)
+                rotate(6deg);
+
+            animation-delay: 4s;
+        }
+
+        .foto:nth-child(4) {
+            transform:
+                translate(280px, 230px)
+                rotate(-7deg);
+
+            animation-delay: 6s;
+        }
+
+        .foto:nth-child(5) {
+            transform:
+                translate(0, -270px)
+                rotate(2deg);
+
+            animation-delay: 8s;
+        }
+
+
+        /* =========================
+           CAPA OSCURA
+        ========================= */
+
+        .oscurecer {
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(5,5,9,.15),
+                    rgba(5,5,9,.85)
+                );
+
+            z-index: 5;
+        }
+
+
+        /* =========================
+           TEXTO
+        ========================= */
+
+        .contenedor-texto {
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 10;
+
+            display: flex;
+
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .texto {
+            width: 85%;
+
+            max-width: 700px;
+
+            text-align: center;
+
+            font-size: clamp(20px, 3vw, 30px);
+
+            line-height: 1.9;
+
+            color: white;
+
+            text-shadow:
+                0 2px 15px #000,
+                0 0 20px rgba(255,100,170,.4);
+
+            animation:
+                subirTexto 38s linear forwards;
+
+            padding-top: 100vh;
+
+            padding-bottom: 100vh;
+        }
+
+        .texto .destacado {
+            color: #ffb4d4;
+
+            font-size: 1.25em;
+
+            text-shadow:
+                0 0 15px rgba(255,120,180,.7);
+        }
+
+
+        /* =========================
+           BOTÓN VOLVER
+        ========================= */
+
+        #volver {
+            position: absolute;
+
+            z-index: 20;
+
+            bottom: 25px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            padding: 12px 27px;
+
+            border:
+                1px solid rgba(255,255,255,.35);
+
+            border-radius: 30px;
+
+            color: white;
+
+            background:
+                rgba(0,0,0,.35);
+
+            backdrop-filter: blur(10px);
+
+            cursor: pointer;
+
+            transition: .4s;
+        }
+
+        #volver:hover {
+            background:
+                rgba(255,100,160,.2);
+
+            transform:
+                translateX(-50%)
+                scale(1.07);
+        }
+
+
+        /* =========================
+           MENSAJE FINAL
+        ========================= */
+
+        #mensajeFinal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 200;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                rgba(3,3,7,.95);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: 1s;
+        }
+
+        #mensajeFinal.mostrar {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+        .mensaje-contenido {
+            width: 85%;
+
+            max-width: 600px;
+
+            animation:
+                aparecer 1.2s ease;
+        }
+
+        .mensaje-contenido h2 {
+            font-size:
+                clamp(30px, 7vw, 60px);
+
+            color: #ffb4d4;
+
+            margin-bottom: 25px;
+
+            text-shadow:
+                0 0 20px
+                rgba(255,100,170,.5);
+        }
+
+        .mensaje-contenido p {
+            font-size: 20px;
+
+            line-height: 1.7;
+
+            color: #eee;
+        }
+
+        .cerrar-mensaje {
+            margin-top: 30px;
+
+            padding: 12px 30px;
+
+            border:
+                1px solid #ffb4d4;
+
+            border-radius: 30px;
+
+            background: transparent;
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           CORAZONES
+        ========================= */
+
+        .corazon {
+            position: fixed;
+
+            bottom: -30px;
+
+            color: #ff9bc8;
+
+            font-size: 18px;
+
+            opacity: .7;
+
+            animation:
+                subirCorazon
+                linear
+                forwards;
+
+            pointer-events: none;
+
+            z-index: 15;
+        }
+
+
+        /* =========================
+           ANIMACIONES
+        ========================= */
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        @keyframes brillo {
+
+            from {
+                text-shadow:
+                    0 0 5px
+                    rgba(255,150,200,.2);
+            }
+
+            to {
+                text-shadow:
+                    0 0 25px
+                    rgba(255,150,200,.8);
+            }
+
+        }
+
+
+        @keyframes subirTexto {
+
+            from {
+                transform:
+                    translateY(0);
+            }
+
+            to {
+                transform:
+                    translateY(-100%);
+            }
+
+        }
+
+
+        @keyframes flotar {
+
+            0% {
+                margin-top: -20px;
+            }
+
+            50% {
+                margin-top: 30px;
+            }
+
+            100% {
+                margin-top: -30px;
+            }
+
+        }
+
+
+        @keyframes aparecerFoto {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(.7);
+            }
+
+            to {
+                opacity: .32;
+            }
+
+        }
+
+
+        @keyframes subirCorazon {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .8;
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+
+        }
+
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .foto {
+                width: 190px;
+
+                height: 280px;
+
+                opacity: .25;
+            }
+
+            .foto:nth-child(1) {
+                transform:
+                    translate(-115px, -180px)
+                    rotate(-8deg);
+            }
+
+            .foto:nth-child(2) {
+                transform:
+                    translate(115px, -170px)
+                    rotate(7deg);
+            }
+
+            .foto:nth-child(3) {
+                transform:
+                    translate(-120px, 170px)
+                    rotate(6deg);
+            }
+
+            .foto:nth-child(4) {
+                transform:
+                    translate(120px, 170px)
+                    rotate(-7deg);
+            }
+
+            .foto:nth-child(5) {
+                transform:
+                    translate(0, 0)
+                    rotate(2deg);
+            }
+
+            .texto {
+                width: 82%;
+
+                font-size: 19px;
+
+                line-height: 1.8;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         INICIO
+    ========================= -->
+
+    <section id="inicio">
+
+        <div class="inicio-contenido">
+
+            <div class="pequeno">
+                Esto es para ti
+            </div>
+
+            <h1 class="titulo">
+                Isabella Inés
+            </h1>
+
+            <p class="subtitulo">
+                Para una niña muy especial ❤️
+            </p>
+
+            <button
+                class="boton-entrar"
+                onclick="abrirCarta()">
+
+                Abrir mi carta ✨
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CARTA
+    ========================= -->
+
+    <section id="carta">
+
+
+        <!--
+            AQUÍ PONES TUS FOTOS.
+
+            Guarda las imágenes dentro
+            de una carpeta llamada "fotos".
+
+            Ejemplo:
+
+            fotos/foto1.jpg
+            fotos/foto2.jpg
+            fotos/foto3.jpg
+            fotos/foto4.jpg
+            fotos/foto5.jpg
+        -->
+
+        <div class="galeria">
+
+            <img
+                class="foto"
+                src="fotos/WhatsApp Image 2026-10-05 at 8.3.46 PM.jpeg">
+
+            <img
+                class="foto"
+                src="fotos/WhatsApp Image 2026-10-05 at 8.53.6 PM.jpeg">
+
+            <img
+                class="foto"
+                src="fotos/WhatsApp Image 2026-10-05 at 8.53.46 PM.jpeg">
+
+            <img
+                class="foto"
+                src="fotos/WhatsApp Image 2026-10-05 t 8.53.46 PM.jpeg">
+
+            <img
+                class="foto"
+                src="fotos/WhatsApp Image 2026-10-5 at 8.53.46 PM.jpeg">
+
+        </div>
+
+
+        <div class="oscurecer"></div>
+
+
+        <!-- =========================
+             TEXTO
+        ========================= -->
+
+        <div class="contenedor-texto">
+
+            <div class="texto">
+
+                <p>
+
+                    <span class="destacado">
+                        Isabella Inés...
+                    </span>
+
+                    <br><br>
+
+                    Hay personas que llegan a nuestra vida
+                    sin avisar y, poco a poco, terminan
+                    convirtiéndose en alguien demasiado
+                    especial.
+
+                    <br><br>
+
+                    Y tú eres una de esas personas.
+
+                    <br><br>
+
+                    No sé exactamente en qué momento
+                    empezaste a ocupar un lugar tan bonito
+                    en mis pensamientos, pero sé que desde
+                    entonces hay momentos que simplemente
+                    se sienten diferentes cuando estás tú.
+
+                    <br><br>
+
+                    Me gusta la forma en la que puedes
+                    hacer que un momento sencillo se vuelva
+                    especial, la manera en que una sonrisa
+                    tuya puede cambiar completamente
+                    el ambiente y esos pequeños detalles
+                    que probablemente para ti no significan
+                    demasiado, pero que para mí pueden
+                    significar muchísimo.
+
+                    <br><br>
+
+                    Quiero que sepas que admiro la persona
+                    que eres y que me alegra muchísimo
+                    haberte conocido.
+
+                    <br><br>
+
+                    Tal vez no siempre encuentre las palabras
+                    correctas para decir todo lo que siento,
+                    pero espero que estas palabras puedan
+                    demostrar aunque sea un poquito
+                    del cariño que te tengo.
+
+                    <br><br>
+
+                    Porque hay personas que uno conoce,
+                    personas que uno recuerda y personas
+                    que simplemente dejan una huella.
+
+                    <br><br>
+
+                    Tú eres de esas personas que dejan
+                    una huella bonita.
+
+                    <br><br>
+
+                    Y si algún día llegas a dudar de lo
+                    especial que eres, espero que recuerdes
+                    que existe alguien que se tomó el tiempo
+                    de hacer todo esto solamente para
+                    recordártelo.
+
+                    <br><br>
+
+                    No quiero que este momento sea solamente
+                    una página en internet.
+
+                    <br><br>
+
+                    Quiero que sea un pequeño recuerdo.
+
+                    <br><br>
+
+                    Un recuerdo de que alguna vez alguien
+                    quiso detener el tiempo por unos minutos
+                    solamente para decirte:
+
+                    <br><br>
+
+                    <span class="destacado">
+                        Gracias por existir.
+                    </span>
+
+                    <br><br>
+
+                    Gracias por cada sonrisa, cada momento,
+                    cada conversación y cada pequeño detalle
+                    que has compartido.
+
+                    <br><br>
+
+                    Y sobre todo...
+
+                    <br><br>
+
+                    gracias por ser tú.
+
+                    <br><br>
+
+                    ❤️
+
+                    <br><br>
+
+                    Con mucho cariño,
+
+                    <br>
+
+                    <span class="destacado">
+                        alguien que te considera
+                        realmente especial.
+                    </span>
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             VOLVER
+        ========================= -->
+
+        <button
+            id="volver"
+            onclick="volverInicio()">
+
+            Volver ❤️
+
+        </button>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         MENSAJE FINAL
+    ========================= -->
+
+    <div id="mensajeFinal">
+
+        <div class="mensaje-contenido">
+
+            <h2>
+                Gracias ❤️
+            </h2>
+
+            <p>
+
+                Gracias por tomarte este bello tiempo
+                a mi lado.
+
+                <br><br>
+
+                Espero que este pequeño detalle
+                haya conseguido sacarte una sonrisa.
+
+            </p>
+
+            <button
+                class="cerrar-mensaje"
+                onclick="cerrarMensaje()">
+
+                Volver a la carta
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         MÚSICA
+    ========================= -->
+
+    <audio
+        id="musica"
+        loop>
+
+        <source
+            <source src="musica/WhatsApp Audio 2026-10-05 at 9.10.25 PM.mpeg">
+
+    </audio>
+
+
+
+    <script>
+
+
+        /* =========================
+           ABRIR CARTA
+        ========================= */
+
+        function abrirCarta() {
+
+            const inicio =
+                document.getElementById("inicio");
+
+            const carta =
+                document.getElementById("carta");
+
+            const musica =
+                document.getElementById("musica");
+
+
+            inicio.classList.add("oculto");
+
+
+            setTimeout(() => {
+
+                carta.classList.add("activa");
+
+            }, 700);
+
+
+            musica.play().catch(() => {
+
+                console.log(
+                    "La reproducción necesita interacción."
+                );
+
+            });
+
+
+            crearCorazones();
+
+        }
+
+
+        /* =========================
+           BOTÓN VOLVER
+        ========================= */
+
+        function volverInicio() {
+
+            const mensaje =
+                document.getElementById("mensajeFinal");
+
+            mensaje.classList.add("mostrar");
+
+        }
+
+
+        /* =========================
+           CERRAR MENSAJE
+        ========================= */
+
+        function cerrarMensaje() {
+
+            const mensaje =
+                document.getElementById("mensajeFinal");
+
+            mensaje.classList.remove("mostrar");
+
+        }
+
+
+        /* =========================
+           CREAR CORAZÓN
+        ========================= */
+
+        function crearCorazon() {
+
+            const corazon =
+                document.createElement("div");
+
+            corazon.className =
+                "corazon";
+
+            corazon.innerHTML =
+                Math.random() > .5
+                ? "❤️"
+                : "♡";
+
+
+            corazon.style.left =
+                Math.random() * 100 + "vw";
+
+
+            corazon.style.fontSize =
+                (12 + Math.random() * 22) + "px";
+
+
+            corazon.style.animationDuration =
+                (6 + Math.random() * 7) + "s";
+
+
+            document.body.appendChild(corazon);
+
+
+            setTimeout(() => {
+
+                corazon.remove();
+
+            }, 14000);
+
+        }
+
+
+        /* =========================
+           LLUVIA DE CORAZONES
+        ========================= */
+
+        function crearCorazones() {
+
+            setInterval(() => {
+
+                crearCorazon();
+
+            }, 700);
+
+        }
+
+
+    </script>
+
+</body>
+</html>
+```
